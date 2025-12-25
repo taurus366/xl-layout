@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { AppMenuitem } from './app.menuitem';
-import { MenuRegistryService } from '../services/menu-registry.service';
+import { MenuRegistryService } from '../service/menu-registry.service';
 
 @Component({
     selector: 'app-menu',
