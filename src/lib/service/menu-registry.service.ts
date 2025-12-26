@@ -16,7 +16,7 @@ export class MenuRegistryService {
 
     private buildMenu() {
         this.menuItems.set([
-            { label: 'Home', items: [{ label: 'Dashboard', icon: 'pi pi-home', routerLink: ['/'] }] },
+            // { label: 'Home', items: [{ label: 'Dashboard', icon: 'pi pi-home', routerLink: ['/'] }] },
             ...GLOBAL_MENU_STORE
         ]);
     }

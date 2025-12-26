@@ -6,7 +6,7 @@ import { StyleClassModule } from 'primeng/styleclass';
 import { AppConfigurator } from './app.configurator';
 import { LayoutService } from '../service/layout.service';
 import { AuthService } from 'xl-auth';
-import {XL_TOPBAR_CONFIG, TopBarConfig} from 'xl-util';
+import {XL_TOPBAR_CONFIG, TopBarConfig, TopbarRegistryService} from 'xl-util';
 
 @Component({
     selector: 'app-topbar',
@@ -68,6 +68,13 @@ import {XL_TOPBAR_CONFIG, TopBarConfig} from 'xl-util';
 
             <div class="layout-topbar-menu hidden lg:block">
                 <div class="layout-topbar-menu-content">
+                    <ng-container *ngFor="let item of registry.getComponentsToLoad()()">
+                        <ng-container *ngComponentOutlet="item.component;"></ng-container>
+                    </ng-container>
+
+                    <ng-container *ngFor="let tpl of registry.actions()">
+                        <ng-container *ngTemplateOutlet="tpl"></ng-container>
+                    </ng-container>
 <!--                    <button type="button" class="layout-topbar-action">-->
 <!--                        <i class="pi pi-calendar"></i>-->
 <!--                        <span>Calendar</span>-->
@@ -76,27 +83,27 @@ import {XL_TOPBAR_CONFIG, TopBarConfig} from 'xl-util';
 <!--                        <i class="pi pi-inbox"></i>-->
 <!--                        <span>Messages</span>-->
 <!--                    </button>-->
-                    <button
-                        class="layout-topbar-action"
-                        pStyleClass="@next"
-                        enterFromClass="hidden"
-                        enterActiveClass="animate-scalein"
-                        leaveToClass="hidden"
-                        leaveActiveClass="animate-fadeout"
-                        [hideOnOutsideClick]="true"
-                    >
-                        <i class="pi pi-user"></i>
-                        <span>User</span>
-                    </button>
-                    <div class="hidden absolute right-0 top-full mt-2 w-40 p-2 bg-surface-0 shadow-md rounded-md z-50">
-                        <button class="p-link flex items-center gap-2 w-full p-2 hover:bg-surface-100 rounded-md" (click)="openProfile()">
-                            <i class="pi pi-id-card"></i> Profile
-                        </button>
+<!--                    <button-->
+<!--                        class="layout-topbar-action"-->
+<!--                        pStyleClass="@next"-->
+<!--                        enterFromClass="hidden"-->
+<!--                        enterActiveClass="animate-scalein"-->
+<!--                        leaveToClass="hidden"-->
+<!--                        leaveActiveClass="animate-fadeout"-->
+<!--                        [hideOnOutsideClick]="true"-->
+<!--                    >-->
+<!--                        <i class="pi pi-user"></i>-->
+<!--                        <span>User</span>-->
+<!--                    </button>-->
+<!--                    <div class="hidden absolute right-0 top-full mt-2 w-40 p-2 bg-surface-0 shadow-md rounded-md z-50">-->
+<!--                        <button class="p-link flex items-center gap-2 w-full p-2 hover:bg-surface-100 rounded-md" (click)="openProfile()">-->
+<!--                            <i class="pi pi-id-card"></i> Profile-->
+<!--                        </button>-->
 
-                        <button class="p-link flex items-center gap-2 w-full p-2 hover:bg-surface-100 rounded-md text-red-500" (click)="logout()">
-                            <i class="pi pi-sign-out"></i> Logout
-                        </button>
-                    </div>
+<!--                        <button class="p-link flex items-center gap-2 w-full p-2 hover:bg-surface-100 rounded-md text-red-500" (click)="logout()">-->
+<!--                            <i class="pi pi-sign-out"></i> Logout-->
+<!--                        </button>-->
+<!--                    </div>-->
                 </div>
             </div>
         </div>
@@ -106,6 +113,7 @@ export class AppTopbar {
     items!: MenuItem[];
 
     public topBarConfig = inject<TopBarConfig>(XL_TOPBAR_CONFIG as any);
+    public registry = inject(TopbarRegistryService);
 
     constructor(public layoutService: LayoutService, private authService: AuthService) {}
 
@@ -113,14 +121,14 @@ export class AppTopbar {
         this.layoutService.layoutConfig.update((state) => ({ ...state, darkTheme: !state.darkTheme }));
     }
 
-    openProfile() {
-        console.log("Go to profile");
-    }
-
-    logout() {
-        // console.log("Logout clicked");
-        // Тук по-късно ще викаш AuthService.logout()
-       this.authService.logout();
-    }
+    // openProfile() {
+    //     console.log("Go to profile");
+    // }
+    //
+    // logout() {
+    //     // console.log("Logout clicked");
+    //     // Тук по-късно ще викаш AuthService.logout()
+    //     this.authService.logout();
+    // }
 
 }
