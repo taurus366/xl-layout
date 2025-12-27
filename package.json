@@ -1,6 +1,8 @@
 {
     "name": "xl-layout",
     "version": "0.0.1",
+    "main": "src/index.ts",
+    "typings": "src/index.ts",
     "peerDependencies": {
         "@angular/common": "^20.0.0",
         "@angular/core": "^20.0.0"
