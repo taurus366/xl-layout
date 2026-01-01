@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { StyleClassModule } from 'primeng/styleclass';
 import { AppConfigurator } from './app.configurator';
 import { LayoutService } from '../service/layout.service';
-import { AuthService } from 'xl-auth';
+// import { AuthService } from 'xl-auth';
 import {XL_TOPBAR_CONFIG, TopBarConfig, TopbarRegistryService, LanguageSelectorComponent } from 'xl-util';
 
 @Component({
@@ -119,7 +119,7 @@ export class AppTopbar {
 
     constructor(
         public layoutService: LayoutService,
-        private authService: AuthService
+        // private authService: AuthService
     ) {}
 
     toggleDarkMode() {
