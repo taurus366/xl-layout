@@ -14,7 +14,12 @@ export const appRoutes: Routes = [
         canActivate: [XL_AUTH_GUARD_TOKEN],
         children: [
             // { path: '', component: Dashboard },
-            ...GLOBAL_ROUTE_STORE,
+            // ...GLOBAL_ROUTE_STORE,
+            {
+                path: '',
+                loadChildren: () => import('xl-util')
+                    .then(m => m.GLOBAL_ROUTE_STORE)
+            }
             // { path: 'uikit', loadChildren: () => import('./app/pages/uikit/uikit.routes') },
             // { path: 'documentation', component: Documentation },
             // { path: 'pages', loadChildren: () => import('./app/pages/pages.routes') },
