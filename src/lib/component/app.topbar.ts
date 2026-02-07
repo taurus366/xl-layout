@@ -17,7 +17,7 @@ import {XL_TOPBAR_CONFIG, TopBarConfig, TopbarRegistryService, LanguageSelectorC
             <button class="layout-menu-button layout-topbar-action" (click)="layoutService.onMenuToggle()">
                 <i class="pi pi-bars"></i>
             </button>
-            <a class="layout-topbar-logo" routerLink="/">
+            <a class="layout-topbar-logo" [routerLink]="topBarConfig.clickUrl?? '/'">
                 <!--                <svg viewBox="0 0 54 40" fill="none" xmlns="http://www.w3.org/2000/svg">-->
                 <!--                    <path-->
                 <!--                        fill-rule="evenodd"-->
