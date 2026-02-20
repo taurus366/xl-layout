@@ -6,22 +6,24 @@ import { AppTopbar } from './app.topbar';
 import { AppSidebar } from './app.sidebar';
 import { AppFooter } from './app.footer';
 import { LayoutService } from '../service/layout.service';
+import { Toast } from 'primeng/toast';
 
 @Component({
     selector: 'app-layout',
     standalone: true,
-    imports: [CommonModule, AppTopbar, AppSidebar, RouterModule, AppFooter],
+    imports: [CommonModule, AppTopbar, AppSidebar, RouterModule, AppFooter, Toast],
     template: `<div class="layout-wrapper" [ngClass]="containerClass">
-        <app-topbar></app-topbar>
-        <app-sidebar></app-sidebar>
-        <div class="layout-main-container">
-            <div class="layout-main">
-                <router-outlet></router-outlet>
+            <app-topbar></app-topbar>
+            <app-sidebar></app-sidebar>
+            <div class="layout-main-container">
+                <div class="layout-main">
+                    <router-outlet></router-outlet>
+                </div>
+                <app-footer></app-footer>
             </div>
-            <app-footer></app-footer>
+            <div class="layout-mask animate-fadein"></div>
         </div>
-        <div class="layout-mask animate-fadein"></div>
-    </div> `
+        <p-toast></p-toast>`
 })
 export class AppLayout {
     overlayMenuOpenSubscription: Subscription;
